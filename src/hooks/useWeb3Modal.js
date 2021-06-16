@@ -6,7 +6,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import COMPABI from "../abi/Comp.json";
 // Enter a valid infura key here to avoid being rate limited
 // You can get a key for free at https://infura.io/register
-const INFURA_ID = `${process.env.INFURA_KEY}`;
+const INFURA_ID = process.env.REACT_APP_INFURA_KEY;
 
 const NETWORK_NAME = "rinkeby";
 
@@ -42,8 +42,8 @@ function useWeb3Modal(config = {}) {
     console.log(newProvider);
     const web3 = new Web3(newProvider);
     const contracts = await getContracts(web3);
-    // const accounts = await web3.eth.getAccounts();
-    // setAccounts(accounts[0]);
+    const accounts = await web3.eth.getAccounts();
+    setAccounts(accounts[0]);
     setProvider(web3);
     setContracts(contracts);
   }, [web3Modal]);
@@ -57,11 +57,12 @@ function useWeb3Modal(config = {}) {
   );
   const getContracts = async (provider) => {
     const networkId = await provider.eth.net.getId();
-
+    console.log("networkId", networkId);
     const deployedNetwork = COMPABI.networks[networkId];
+    console.log(provider);
     const comp = new provider.eth.Contract(
       COMPABI.abi,
-      `${process.env.CONTRACT_ADDR}`
+      process.env.REACT_APP_CONTRACT_ADDR
     );
     console.log(comp);
     return comp;
@@ -80,7 +81,7 @@ function useWeb3Modal(config = {}) {
     web3Modal.cachedProvider,
   ]);
 
-  return [provider, loadWeb3Modal, logoutOfWeb3Modal, contracts];
+  return [provider, loadWeb3Modal, logoutOfWeb3Modal, contracts, accounts];
 }
 
 export default useWeb3Modal;
