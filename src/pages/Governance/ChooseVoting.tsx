@@ -118,10 +118,10 @@ function ChooseVoting({ open, handleClose, handleDelegateVoting, handleManualVot
             </p>
           </Grid>
           <Grid item xs={8} sm={8}>
-            <p onClick={handleDelegateVoting}>
+            <p onClick={handleManualVoting}>
               <strong>Manual Voting</strong>
             </p>
-            <p className={classes.textSize} onClick={handleDelegateVoting}>
+            <p className={classes.textSize} onClick={handleManualVoting}>
               This option allows you to vote on proposals directly from your
               connected wallet.
             </p>

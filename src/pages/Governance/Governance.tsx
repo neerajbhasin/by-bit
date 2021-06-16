@@ -90,8 +90,8 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: "center",
       cursor: "pointer",
       "&:hover": {
-        backgroundColor: "#0E47EF",
-        color: "#ffff",
+        //backgroundColor: "#0E47EF",
+        color: "#0E47EF",
         
       },
     },
@@ -120,7 +120,13 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: "right",
       fontSize: "18px",
       color: "#999999",
-      cursor:'pointer'
+      cursor:'pointer',
+      "&:hover": {
+       
+        color: "#0E47EF",
+        
+      },
+
     }
   })
 );
