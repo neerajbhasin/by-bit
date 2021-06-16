@@ -106,7 +106,8 @@ export default function Header() {
                 ref={anchorRef}
                 aria-controls={open ? 'menu-list-grow' : undefined}
                 aria-haspopup="true"
-                onClick={handleToggle}
+                // onClick={handleToggle}
+                onMouseOver={handleToggle}
                 />
               </ListItemLink>
               <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
@@ -133,10 +134,10 @@ export default function Header() {
               <ListItemLink href="#">
                 <ListItemText primary="FAQ" />
               </ListItemLink>
-              <ListItemLink href="#">
+              {/* <ListItemLink href="#">
                 <img src="/language.png" />
                 <ListItemText primary="EN" />
-              </ListItemLink>
+              </ListItemLink> */}
             </List>
           </div>
         </Toolbar>

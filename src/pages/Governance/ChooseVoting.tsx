@@ -79,7 +79,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#CCCCCC",
     cursor: "pointer",
   },textSize:{
-      fontSize:'15px'
+      fontSize:'15px',
+      cursor:"pointer"
   },
   closeButton:{
     position:'absolute',
@@ -104,7 +105,7 @@ function ChooseVoting({ open, handleClose, handleDelegateVoting, handleManualVot
         <Grid container spacing={3}>
           <Grid item xs={12} className={classes.heading}>
             <h3 className={classes.heading}>Choose Delegation Voting
-            <span className={classes.closeButton} onClick={handleClose}>x</span>
+            <span style={{cursor:'pointer'}}className={classes.closeButton} onClick={handleClose}>x</span>
             </h3>
           </Grid>
         </Grid>
@@ -117,10 +118,10 @@ function ChooseVoting({ open, handleClose, handleDelegateVoting, handleManualVot
             </p>
           </Grid>
           <Grid item xs={8} sm={8}>
-            <p>
+            <p onClick={handleDelegateVoting}>
               <strong>Manual Voting</strong>
             </p>
-            <p className={classes.textSize}>
+            <p className={classes.textSize} onClick={handleDelegateVoting}>
               This option allows you to vote on proposals directly from your
               connected wallet.
             </p>
@@ -136,10 +137,10 @@ function ChooseVoting({ open, handleClose, handleDelegateVoting, handleManualVot
             </p>
           </Grid>
           <Grid item xs={8} sm={8}>
-            <p>
+            <p onClick={handleDelegateVoting}>
               <strong>Delegate Voting</strong>
             </p>
-            <p className={classes.textSize}>
+            <p className={classes.textSize} onClick={handleDelegateVoting}>
               This options allows you to delegate your votes to another Ethereum
               address. You never send COMP, only your voting rights, and can
               undelegate at any time.

@@ -89,6 +89,11 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: "0px 0px 15px 15px",
       textAlign: "center",
       cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "#0E47EF",
+        color: "#ffff",
+        
+      },
     },
     votingWalletContainer: {
       margintTop: "50px !important",

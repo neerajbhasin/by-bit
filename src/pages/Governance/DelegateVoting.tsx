@@ -83,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
     color:'#CCCCCC',
     fontWeight:400,
     cursor:'pointer'
+
   }
   
 }));
@@ -103,7 +104,7 @@ function DelegateVoting({ open, handleClose,handleDelegateSubmit }: ModalProps) 
           <Grid item xs={12} className={classes.heading}>
              
               <h3 className={classes.heading}>Delegate Voting 
-              <span className={classes.closeButton}onClick={handleClose}>x</span>
+              <span style={{cursor:'pointer'}}className={classes.closeButton}onClick={handleClose}>x</span>
               </h3>
               
               
