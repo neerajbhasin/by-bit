@@ -6,11 +6,12 @@ import Typography from "@material-ui/core/Typography";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
 
+import { callAnalyticEvent } from "../../Events"
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-      padding: "40px 100px 0 100px",
+      padding: "40px 100px 20px 100px",
       backgroundImage: "linear-gradient(to right, #ECF8FF, #FFF6F8)",
       color: "#2D82B7",
       fontFamily: "Space Grotesk",
@@ -19,24 +20,24 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 700,
       textAlign: "left",
       color: '#0E47EF',
-      fontSize:'24px'
+      fontSize: '24px'
 
     },
-    subSection:{
+    subSection: {
       color: '#121212',
-      fontSize:'18px',
-      fontWeight:400
+      fontSize: '18px',
+      fontWeight: 400
     },
-    learmore:{
-      fontSize:'18px',
-      fontWeight:400,
+    learmore: {
+      fontSize: '18px',
+      fontWeight: 400,
       color: '#999999',
       '&:hover': {
         color: "#0E47EF",
-        cursor:'pointer'
-     },
+        cursor: 'pointer'
+      },
     },
-    
+
     pl: {
       paddingLeft: "0px",
     },
@@ -69,14 +70,14 @@ function ListItemLink(props: ListItemProps<"a", { button?: true }>) {
 function Footer() {
   const classes = useStyles();
   return (
-    <Grid container spacing={5} className={classes.root}>
-      <Grid item xs={12} className={classes.section}>
+    <Grid spacing={5} className={classes.root}>
+      <Grid item xs={10} className={classes.section}>
         {/* <Typography variant="h4" component="h2" className={classes.section}>
           BitDAO
         </Typography> */}
         <img src="/Frame.png" />
       </Grid>
-      <Grid item xs={12} className={classes.section}>
+      <Grid item xs={10} className={classes.section}>
         <Typography variant="h4" component="h2" className={classes.section}>
           BitDAO Governance
         </Typography>
@@ -85,7 +86,9 @@ function Footer() {
           through a proposal and voting process. Successful proposals are
           automatically executed on-chain without reliance on a middleman.
         </p>
-        <p className={classes.learmore}>Learn More {'>'}{'>'}</p>
+        <a href="#" style={{ textDecoration: "none" }}>
+          <p className={classes.learmore} >Learn More {'>'}{'>'}</p>
+        </a>
       </Grid>
     </Grid>
   );

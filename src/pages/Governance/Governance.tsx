@@ -18,6 +18,8 @@ import WalletButton from "../../components/WalletButton/WalletButton";
 import useWeb3Modal from "../../hooks/useWeb3Modal";
 import DelegateVoting from "./DelegateVoting";
 
+//google analytic events
+import { callAnalyticEvent } from "../../Events"
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -43,8 +45,8 @@ const useStyles = makeStyles((theme: Theme) =>
     votingContainer: {
       borderRadius: "16px",
       padding: "15px 30px 15px 30px",
-      
-      
+
+
 
       backgroundImage: "linear-gradient(to  right, #0E47EF, #6288F7)",
     },
@@ -53,10 +55,10 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: "48px",
       fontWeight: 700,
       ['@media (max-width:619px)']: {
-        fontSize:'24px !important'
+        fontSize: '24px !important'
       },
       ['@media (max-width:420px)']: {
-        fontSize:'18px !important'
+        fontSize: '18px !important'
       },
     },
     subHeading: {
@@ -64,7 +66,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       fontSize: "18px",
       ['@media (max-width:420px)']: {
-        fontSize:'15px !important'
+        fontSize: '15px !important'
       },
     },
     subHeading2: {
@@ -92,7 +94,7 @@ const useStyles = makeStyles((theme: Theme) =>
       "&:hover": {
         //backgroundColor: "#0E47EF",
         color: "#0E47EF",
-        
+
       },
     },
     votingWalletContainer: {
@@ -116,15 +118,15 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: "16px",
       backgroundImage: "linear-gradient(to bottom, #0E47EF, #6288F7)",
     },
-    changeButton:{
+    changeButton: {
       textAlign: "right",
       fontSize: "18px",
       color: "#999999",
-      cursor:'pointer',
+      cursor: 'pointer',
       "&:hover": {
-       
+
         color: "#0E47EF",
-        
+
       },
 
     }
@@ -140,9 +142,9 @@ function createData(
   Votes: string,
   VoteWeight: string,
   ProposalsVoted: string
-  
+
 ) {
-  return { Rank, Votes, VoteWeight, ProposalsVoted,  };
+  return { Rank, Votes, VoteWeight, ProposalsVoted, };
 }
 
 const rows = [
@@ -189,7 +191,7 @@ const rows = [
 
 ];
 
-function Governance({}) {
+function Governance({ }) {
   const classes = useStyles();
   // const matches = useMediaQuery(
   //   ({
@@ -208,9 +210,14 @@ function Governance({}) {
   console.log(provider);
 
   const handleViewMore = () => {
+
+
     if (arrayLength == 5) {
+      //callAnalyticEvent('gov_banner_viewleaderboard')
       setArrayLength(30);
+
     } else {
+      //callAnalyticEvent('gov_banner_packup')
       setArrayLength(5);
     }
   };
@@ -244,6 +251,15 @@ function Governance({}) {
     console.log(result);
   };
 
+  const handleWallet = () => {
+    console.log("handle wallet");
+    if (!provider) {
+      loadWeb3Modal();
+    } else {
+      logoutOfWeb3Modal();
+    }
+
+  }
   React.useEffect(() => {
     if (provider != undefined) {
       setConnected(true);
@@ -326,7 +342,7 @@ function Governance({}) {
                     <TableCell align="right">{row.Votes}</TableCell>
                     <TableCell align="right">{row.VoteWeight}</TableCell>
                     <TableCell align="right">{row.ProposalsVoted}</TableCell>
-                    
+
                   </TableRow>
                 ))}
               </TableBody>
@@ -423,7 +439,7 @@ function Governance({}) {
                   <img src="/nothingIsHere.png" />
                 </p>
 
-                <p>
+                <p onClick={handleWallet} style={{ cursor: "pointer" }}>
                   Nothing's Here, <br /> connect wallet now {">"}
                   {">"}
                 </p>

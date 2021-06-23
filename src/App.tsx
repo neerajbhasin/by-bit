@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ReactGA from 'react-ga';
 import Header from "./components/Header";
 import Governance from "./pages/Governance";
 import Footer from "./components/Footer";
@@ -14,6 +15,10 @@ const THEME = createMuiTheme({
     fontFamily: `Space Grotesk !important`,
   },
 });
+
+const trackingId = "UA-1234567890-1"; // Replace with your Google Analytics tracking ID
+ReactGA.initialize(trackingId);
+ReactGA.pageview(window.location.pathname + window.location.search);
 function App() {
   // const [provider, loadWeb3Modal, logoutOfWeb3Modal, contracts] =
   //   useWeb3Modal();

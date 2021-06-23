@@ -15,6 +15,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
+import { callAnalyticEvent } from "../../Events"
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
     listColor: {
       color: "#000",
     },
-    anchortag:{textDecoration:'none', color:'#1049EF'}
+    anchortag: { textDecoration: 'none', color: '#1049EF' }
   })
 );
 
@@ -92,7 +93,7 @@ export default function Header() {
 
   return (
     <div className={classes.root}>
-      
+
       <AppBar className={classes.appbar} position="static">
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
@@ -100,39 +101,39 @@ export default function Header() {
           </Typography>
           <div className={classes.appBarHeading}>
             <List component="nav" className={classes.navList}>
-             
+
               <ListItemLink >
-                <ListItemText primary="Litepaper" 
-                ref={anchorRef}
-                aria-controls={open ? 'menu-list-grow' : undefined}
-                aria-haspopup="true"
-                // onClick={handleToggle}
-                onMouseOver={handleToggle}
+                <ListItemText primary="Litepaper"
+                  ref={anchorRef}
+                  aria-controls={open ? 'menu-list-grow' : undefined}
+                  aria-haspopup="true"
+                  onClick={() => callAnalyticEvent('header_litepaper')}
+                  onMouseOver={handleToggle}
                 />
               </ListItemLink>
               <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem >
-                    <a href='/governance' className={classes.anchortag}>Governance</a></MenuItem>
-                    
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
+                {({ TransitionProps, placement }) => (
+                  <Grow
+                    {...TransitionProps}
+                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                  >
+                    <Paper>
+                      <ClickAwayListener onClickAway={handleClose}>
+                        <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                          <MenuItem >
+                            <a href='/governance' className={classes.anchortag}>Governance</a></MenuItem>
+
+                        </MenuList>
+                      </ClickAwayListener>
+                    </Paper>
+                  </Grow>
+                )}
+              </Popper>
               <ListItemLink href="#">
-                <ListItemText primary="Forum" />
+                <ListItemText primary="Forum" onClick={() => callAnalyticEvent('header_forum')} />
               </ListItemLink>
               <ListItemLink href="#">
-                <ListItemText primary="FAQ" />
+                <ListItemText primary="FAQ" onClick={() => callAnalyticEvent('header_faq')} />
               </ListItemLink>
               {/* <ListItemLink href="#">
                 <img src="/language.png" />
